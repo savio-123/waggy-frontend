@@ -1,0 +1,181 @@
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f6fa;
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    width: 220px;
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+  }
+  
+  .sidebar.show {
+    left: 0;
+  }
+  
+  .logo {
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .menu-item {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .menu-item.active {
+    background: #eee;
+  }
+  
+  /* MAIN */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* TOPBAR */
+  .topbar {
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .menu-btn {
+    display: none;
+  }
+  
+  /* CONTENT */
+  .content {
+    padding: 20px;
+  }
+  
+  /* DASHBOARD */
+  .dashboard {
+    padding: 10px;
+  }
+  
+  /* CARDS */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 16px;
+    color: white;
+  }
+  
+  .gradient1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .gradient2 { background: linear-gradient(135deg, #43cea2, #185a9d); }
+  .gradient3 { background: linear-gradient(135deg, #f7971e, #ffd200); }
+  .gradient4 { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
+  
+  /* CHARTS */
+  .charts {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .chart-box {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  /* PIE */
+  .pie-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .legend-item {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .legend-color {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* TABLE */
+  .orders-table {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    overflow-x: auto;
+  }
+  
+  /* STATUS */
+  .status {
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  
+  .status.pending { background: #ffeaa7; }
+  .status.delivered { background: #55efc4; }
+  .status.shipped { background: #74b9ff; }
+  
+  /* MOBILE */
+  @media (max-width: 768px) {
+  
+    .menu-btn {
+      display: block;
+    }
+  
+    .sidebar {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      height: 100%;
+      z-index: 100;
+      transition: 0.3s;
+    }
+  
+    .sidebar.show {
+      left: 0;
+    }
+  
+    .charts {
+      flex-direction: column;
+    }
+  
+    .pie-wrapper {
+      flex-direction: column;
+    }
+  
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .topbar-title {
+    font-weight: 600;
+    font-size: 18px;
+  }
