@@ -32,6 +32,7 @@ export default function Header({isAdmin,onCategoryChange }) {
   const handleLogout = () => {
     localStorage.removeItem("token")
     window.location.reload()
+    navigate('/')
   }
 
   return (
