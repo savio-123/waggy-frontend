@@ -69,8 +69,6 @@ export default function Clothing() {
 
   useEffect(() => {
     fetchProducts("dog")
-    setTimeout(() => fetchProducts("cat"), 500)
-    setTimeout(() => fetchProducts("bird"), 1000)
   }, [])
 
   // ======================
