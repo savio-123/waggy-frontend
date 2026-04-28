@@ -11,10 +11,12 @@ import { Link } from "react-router-dom"
 export default function Clothing() {
 
   const dispatch = useDispatch()
+  const cacheRef = useRef({})
   const cartItems = useSelector(state => state.cart.items)
   const wishlistItems = useSelector(state => state.wishlist.items)
 
   const [loadingId, setLoadingId] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [activeFilter, setActiveFilter] = useState("dog")
 
@@ -37,21 +39,38 @@ export default function Clothing() {
   // FETCH PRODUCTS
   // ======================
   const fetchProducts = async (animal = "dog") => {
+
+    if (cacheRef.current[animal]){
+      setProducts(cacheRef.current[animal]) 
+      setLoading(false)
+      return
+    }
+
     try {
+      setLoading(true)
+      if (!cacheRef.current[animal]) {
+        setProducts([])
+      }
       const res = await API.get("/products/filter/", {
         params: {
           category: "cloth",
           animal
         }
       })
+
+      cacheRef.current[animal] = res.data 
       setProducts(res.data)
     } catch (err) {
       console.log(err)
+    }finally{
+      setLoading(false)
     }
   }
 
   useEffect(() => {
     fetchProducts("dog")
+    setTimeout(() => fetchProducts("cat"), 500)
+    setTimeout(() => fetchProducts("bird"), 1000)
   }, [])
 
   // ======================
@@ -79,7 +98,15 @@ export default function Clothing() {
   // FILTER
   // ======================
   const handleFilter = (animal) => {
+    if (animal === activeFilter) return
     setActiveFilter(animal)
+
+    if (cacheRef.current[animal]) {
+    setProducts(cacheRef.current[animal])
+  } else {
+    setProducts([])
+  }
+
     fetchProducts(animal)
   }
 
@@ -206,9 +233,12 @@ export default function Clothing() {
         {/* SWIPER */}
         <div className="clothing-carousel swiper" key={activeFilter}>
           <div className="swiper-wrapper">
-
-            {products.map((product) => {
-
+          {loading ? (
+            <div className="text-center py-5 w-100">
+              <h5>Loading...</h5>
+            </div>
+          ) : (
+            products.map((product) => {
               const cartItem = cartMap[product.id]
               const isWishlisted = wishlistSet.has(product.id)
 
@@ -226,7 +256,7 @@ export default function Clothing() {
                         alt={product.name}
                         style={{
                           height: "280px",
-                          objectFit: "content"
+                          objectFit: "cover"
                         }}
                       />
 
@@ -294,8 +324,8 @@ export default function Clothing() {
 
                 </div>
               )
-            })}
-
+            })
+          )}
           </div>
         </div>
 

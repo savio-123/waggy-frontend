@@ -227,7 +227,7 @@ export default function BestSelling() {
                                 onClick={(e)=>handleDecrement(e,product)}
                               >-</button>
 
-                              <span>{cartItem.quantity}</span>
+                              <span className="text-dark p-2">{cartItem.quantity}</span>`
 
                               <button
                                 className="btn btn-sm btn-outline-dark px-2"

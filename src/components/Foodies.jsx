@@ -11,12 +11,14 @@ import API from "../api"
 export default function Foodies() {
 
   const dispatch = useDispatch()
+  const cacheRef = useRef({})
   const cartItems = useSelector(state => state.cart.items)
   const wishlistItems = useSelector(state => state.wishlist.items)
 
   const [products, setProducts] = useState([])
   const [activeFilter, setActiveFilter] = useState("dog")
   const [loadingId, setLoadingId] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const tokenRef = useRef(localStorage.getItem("token"))
 
@@ -24,13 +26,26 @@ export default function Foodies() {
   // FETCH
   // ======================
   const fetchProducts = async (animal = "dog") => {
+    if(cacheRef.current[animal]){
+      setProducts(cacheRef.current[animal])
+      setLoading(false)
+      return
+    }
     try {
+      setLoading(true)
+      if (!cacheRef.current[animal]) {
+        setProducts([])
+      }
       const res = await API.get("/products/filter/", {
         params: { category: "food", animal }
       })
+
+      cacheRef.current[animal] = res.data
       setProducts(res.data)
     } catch (err) {
       console.log(err)
+    } finally{
+      setLoading(false)
     }
   }
 
@@ -82,6 +97,13 @@ export default function Foodies() {
   const handleFilter = (animal) => {
     if (animal === activeFilter) return
     setActiveFilter(animal)
+
+    if (cacheRef.current[animal]) {
+      setProducts(cacheRef.current[animal])
+    } else {
+      setProducts([])
+    }
+
     fetchProducts(animal)
   }
 
@@ -201,8 +223,12 @@ export default function Foodies() {
         {/* SWIPER */}
         <div className="food-carousel swiper" key={activeFilter}>
           <div className="swiper-wrapper">
-
-            {products.map(product => {
+          {loading ? (
+            <div className="text-center py-5 w-100">
+              <h5>Loading...</h5>
+            </div>
+          ) : (
+            products.map(product => {
 
               const cartItem = cartMap.get(product.id)
               const isWishlisted = wishlistSet.has(product.id)
@@ -215,6 +241,7 @@ export default function Foodies() {
                     <div className="card">
 
                       <img
+                        loading="lazy"
                         src={product.image}
                         className="img-fluid rounded-4"
                         alt={product.name}
@@ -278,7 +305,8 @@ export default function Foodies() {
 
                 </div>
               )
-            })}
+            })
+          )}
 
           </div>
         </div>

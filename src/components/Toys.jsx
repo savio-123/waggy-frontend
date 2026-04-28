@@ -11,10 +11,12 @@ import API from "../api"
 export default function Toys() {
 
   const dispatch = useDispatch()
+  const cacheRef = useRef({})
   const cartItems = useSelector(state => state.cart.items)
   const wishlistItems = useSelector(state => state.wishlist.items)
   
   const [loadingId, setLoadingId] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([])
   const [activeFilter, setActiveFilter] = useState("dog")
 
@@ -34,13 +36,25 @@ export default function Toys() {
   }, [wishlistItems])
 
   const fetchProducts = async (animal = "dog") => {
+    if(cacheRef.current[animal]){
+      setProducts(cacheRef.current[animal])
+      setLoading(false)
+      return
+    }
     try {
+      setLoading(true)
+      if (!cacheRef.current[animal]) {
+        setProducts([])
+      }
       const res = await API.get("/products/filter/", {
         params: { category: "toy", animal }
       })
+      cacheRef.current[animal] = res.data
       setProducts(res.data)
     } catch (err) {
       console.log(err)
+    } finally{
+      setLoading(false)
     }
   }
 
@@ -70,6 +84,13 @@ export default function Toys() {
   const handleFilter = (animal) => {
     if (animal === activeFilter) return
     setActiveFilter(animal)
+
+    if (cacheRef.current[animal]) {
+      setProducts(cacheRef.current[animal])
+    } else {
+      setProducts([])
+    }
+
     fetchProducts(animal)
   }
 
@@ -180,8 +201,12 @@ export default function Toys() {
 
         <div className="toys-carousel swiper" key={activeFilter}>
           <div className="swiper-wrapper">
-
-            {products.map(product => {
+          {loading ? (
+            <div className="text-center py-5 w-100">
+              <h5>Loading...</h5>
+            </div>
+          ) : (
+            products.map(product => {
 
               const cartItem = cartMap[product.id]
               const isWishlisted = wishlistSet.has(product.id)
@@ -194,6 +219,7 @@ export default function Toys() {
                     <div className="card">
 
                       <img
+                        loading="lazy"
                         src={product.image}
                         className="img-fluid rounded-4"
                         alt={product.name}
@@ -257,7 +283,8 @@ export default function Toys() {
 
                 </div>
               )
-            })}
+            })
+          )}
 
           </div>
         </div>
