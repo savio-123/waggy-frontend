@@ -137,7 +137,7 @@ export default function Profile() {
           {/* USER INFO */}
           <div>
             <h4 className="mb-1 text-dark">User: {profile.username}</h4>
-            <p className="text-muted mb-1">Email: {profile.email}</p>
+            <p className="text-dark mb-1">Email: {profile.email}</p>
           </div>
   
         </div>
