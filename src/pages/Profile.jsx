@@ -97,7 +97,7 @@ export default function Profile() {
           {/* IMAGE */}
           <div style={{ position: "relative" }}>
   
-            {/* <img
+            <img
               src={
                 profile.image_url
                   ? profile.image_url
@@ -111,7 +111,7 @@ export default function Profile() {
                 objectFit: "cover",
                 border: "3px solid #eee"
               }}
-            /> */}
+            />
   
             {editing && (
               <label
