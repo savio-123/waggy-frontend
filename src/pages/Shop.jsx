@@ -34,15 +34,6 @@
 
     const token = localStorage.getItem("token")
 
-    // LOAD CSS
-    useEffect(() => {
-      const link = document.createElement("link")
-      link.rel = "stylesheet"
-      link.href = "/style.css"
-      document.head.appendChild(link)
-      return () => document.head.removeChild(link)
-    }, [])
-
     // SEARCH FROM HEADER
     useEffect(() => {
       const params = new URLSearchParams(location.search)
