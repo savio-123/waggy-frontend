@@ -324,7 +324,7 @@
                             -
                           </button>
 
-                          <span>
+                          <span className="text-dark">
                             {cartItems.find(i => i.id === product.id).quantity}
                           </span>
 
