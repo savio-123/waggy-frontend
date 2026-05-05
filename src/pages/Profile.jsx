@@ -55,7 +55,7 @@ export default function Profile() {
     const allowedFields = ["phone", "gender", "city", "state", "pincode", "image"]
 
     allowedFields.forEach(key => {
-      if (profile[key]) {
+      if (profile[key] !== undefined && profile[key] !== null) {
         formData.append(key, profile[key])
       }
     })
@@ -99,8 +99,8 @@ export default function Profile() {
   
             <img
               src={
-                profile.image
-                  ? profile.image
+                profile.image_url
+                  ? profile.image_url
                   : "/images/default-user.png"
               }
               alt="profile"
@@ -141,7 +141,6 @@ export default function Profile() {
           </div>
   
         </div>
-  
         <hr className="my-4" />
   
         {/* DETAILS */}
