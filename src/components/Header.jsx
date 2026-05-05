@@ -15,8 +15,14 @@ export default function Header({isAdmin,onCategoryChange }) {
   const { setOpen } = useCartDrawer()
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    setIsLoggedIn(!!token)
+    const checkAuth = () => {
+      setIsLoggedIn(!!localStorage.getItem("token"))
+    }
+  
+    checkAuth()
+    window.addEventListener("authChanged", checkAuth)
+  
+    return () => window.removeEventListener("authChanged", checkAuth)
   }, [])
 
   useEffect(() => {
@@ -31,7 +37,7 @@ export default function Header({isAdmin,onCategoryChange }) {
 
   const handleLogout = () => {
     localStorage.removeItem("token")
-    window.location.reload()
+    window.dispatchEvent(new Event("authChanged")) 
     navigate('/')
   }
 

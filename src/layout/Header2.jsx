@@ -19,8 +19,14 @@ export default function Header2({ isAdmin }) {
 
   // ✅ check login
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    setIsLoggedIn(!!token)
+    const checkAuth = () => {
+      setIsLoggedIn(!!localStorage.getItem("token"))
+    }
+  
+    checkAuth()
+    window.addEventListener("authChanged", checkAuth)
+  
+    return () => window.removeEventListener("authChanged", checkAuth)
   }, [])
 
   // ✅ close dropdown on outside click
@@ -37,7 +43,8 @@ export default function Header2({ isAdmin }) {
 
   const handleLogout = () => {
     localStorage.removeItem("token")
-    window.location.reload()
+    window.dispatchEvent(new Event("authChanged"))
+    navigate('/')
   }
 
   return (
