@@ -50,13 +50,19 @@ function App() {
 
   // ✅ LISTEN FOR LOGIN (NO REFRESH NEEDED)
   useEffect(() => {
-    const handleLogin = () => {
+
+    const updateAuth = () => {
       setToken(localStorage.getItem("token"));
     };
-
-    window.addEventListener("login", handleLogin);
-
-    return () => window.removeEventListener("login", handleLogin);
+  
+    window.addEventListener("login", updateAuth);
+    window.addEventListener("logout", updateAuth);
+  
+    return () => {
+      window.removeEventListener("login", updateAuth);
+      window.removeEventListener("logout", updateAuth);
+    };
+  
   }, []);
 
   // ✅ CLEAN BOOTSTRAP BUGS
