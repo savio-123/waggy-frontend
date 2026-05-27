@@ -265,7 +265,7 @@ export default function OrderDetail() {
                       }
                     )
 
-                    alert("Payment successful 🎉")
+                    toast.success("Payment successful 🎉")
                     fetchOrder()
                   }
                 })
@@ -295,7 +295,7 @@ export default function OrderDetail() {
                   { headers: { Authorization: `Bearer ${tokenRef.current}` } }
                 )
 
-                alert("Order cancelled ❌")
+                toast.error("Order cancelled ❌")
                 navigate("/orders")
 
               } catch (err) {
