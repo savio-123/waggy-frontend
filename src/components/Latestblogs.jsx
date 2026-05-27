@@ -29,7 +29,7 @@ export default function LatestBlog() {
             <h2 className="display-3 fw-normal">Latest Blog Post</h2>
 
             <div>
-              <a href="#" className="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+              <a href="/blogs" className="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                 Read all
               </a>
             </div>
