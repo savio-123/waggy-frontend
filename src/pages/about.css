@@ -7,13 +7,9 @@
   }
   
   /* DARK OVERLAY (IMPORTANT 🔥) */
-.about-clean::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.1); /* controls darkness */
-    z-index: 0;
-  }
+  .about-clean::before {
+    display: none;
+}
   
   /* MAKE CONTENT ABOVE OVERLAY */
   .about-clean > * {

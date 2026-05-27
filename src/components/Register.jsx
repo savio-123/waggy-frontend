@@ -19,7 +19,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const { username, email, password } = form   // ✅ FIX
+    const { username, email, password } = form  
 
     if (password.length < 8) {
       return toast.error("Min 8 characters required")

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import API from "../api"
 import { useNavigate, useLocation } from "react-router-dom"
+import toast from "react-hot-toast"
 
 export default function Checkout() {
 
@@ -91,7 +92,7 @@ export default function Checkout() {
             }
           )
         
-          alert("Payment successful 🎉")
+          toast.success("Payment successful 🎉")
           navigate("/orders")
         }
       }
@@ -114,7 +115,7 @@ export default function Checkout() {
         }
       )
 
-      alert("Order placed with Cash on Delivery ✅")
+      toast.success("Order placed with Cash on Delivery ✅")
       navigate("/orders")
 
     } catch (err) {

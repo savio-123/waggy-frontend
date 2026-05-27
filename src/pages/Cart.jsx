@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import API from "../api"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 export default function Cart() {
 
@@ -75,7 +76,7 @@ export default function Cart() {
 
   const handleOrder = () => {
     if (!selectedAddress) {
-      alert("Select address")
+      toast.error("Select address")
       return
     }
 

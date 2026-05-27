@@ -50,21 +50,36 @@ function OrdersAdmin() {
  
   const handleConfirm = async () => {
     try {
-      //  update status
-      await API.put(
-        `/orders/${confirmBox.id}/status/`,
-        { status: confirmBox.status },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
   
-      //  update payment ONLY HERE
-      await API.put(
-        `/orders/${confirmBox.id}/payment/`,
-        { is_paid: confirmBox.is_paid },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      // PAYMENT UPDATE
+      if (confirmBox.paymentAction) {
   
-      setConfirmBox({ show: false, id: null, status: "", is_paid: false });
+        await API.put(
+          `/orders/${confirmBox.id}/payment/`,
+          { is_paid: confirmBox.is_paid },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+  
+      }
+  
+      // STATUS UPDATE
+      else {
+  
+        await API.put(
+          `/orders/${confirmBox.id}/status/`,
+          { status: confirmBox.status },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+  
+      }
+  
+      setConfirmBox({
+        show: false,
+        id: null,
+        status: "",
+        is_paid: false,
+        paymentAction: false
+      });
   
       fetchOrders();
   
@@ -228,7 +243,13 @@ function OrdersAdmin() {
                   className="form-select"
                   value={order.status}
                   onChange={(e) =>
-                    confirmOrder(order.id, e.target.value, order.is_paid)
+                    setConfirmBox({
+                      show: true,
+                      id: order.id,
+                      status: e.target.value,
+                      is_paid: order.is_paid,
+                      paymentAction: false
+                    })
                   }
                 >
                   <option value="Pending">Pending</option>
@@ -259,7 +280,8 @@ function OrdersAdmin() {
                       show: true,
                       id: order.id,
                       status: order.status,
-                      is_paid: true
+                      is_paid: true,
+                      paymentAction: true
                     })
                   }
                 >
@@ -274,7 +296,8 @@ function OrdersAdmin() {
                       show: true,
                       id: order.id,
                       status: order.status,
-                      is_paid: false
+                      is_paid: false,
+                      paymentAction: true
                     })
                   }
                 >
@@ -326,7 +349,10 @@ function OrdersAdmin() {
             <h5>Confirm Action</h5>
 
             <p>
-              Mark order as <strong>{confirmBox.status}</strong>?
+              {confirmBox.paymentAction
+                ? `Mark payment as ${confirmBox.is_paid ? "Paid" : "Not Paid"}?`
+                : `Mark order as ${confirmBox.status}?`
+              }
             </p>
 
             <div className="confirm-actions">

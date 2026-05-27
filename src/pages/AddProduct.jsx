@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import toast from "react-hot-toast"
 import API from "../api"
 
 function AddProduct() {
@@ -43,14 +44,14 @@ function AddProduct() {
     e.preventDefault()
 
     if (!tokenRef.current) {
-      alert("Login required")
+      toast.error("Login required")
       return
     }
 
     const file = imageRef.current?.files[0]
 
     if (!file) {
-      alert("Image required")
+      toast.error("Image required")
       return
     }
 
@@ -69,7 +70,7 @@ function AddProduct() {
         },
       })
 
-      alert("Product submitted for approval")
+      toast.success("Product submitted for approval")
 
       // reset form
       setFormData({
@@ -85,7 +86,7 @@ function AddProduct() {
 
     } catch (err) {
       console.log(err.response?.data)
-      alert("Error")
+      toast.error("Error")
     }
   }
 

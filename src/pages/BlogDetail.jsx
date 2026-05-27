@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState, useRef } from "react"
 import API from "../api"
+import toast from "react-hot-toast"
 
 export default function BlogDetail() {
 
@@ -40,7 +41,7 @@ export default function BlogDetail() {
 
   // LIKE
   const handleLike = async () => {
-    if (!tokenRef.current) return alert("Login required")
+    if (!tokenRef.current) return toast.error("Login required")
 
     await API.post(`/blogs/${id}/like/`, {}, {
       headers: { Authorization: `Bearer ${tokenRef.current}` }
@@ -51,7 +52,7 @@ export default function BlogDetail() {
 
   // ADD COMMENT
   const handleComment = async () => {
-    if (!tokenRef.current) return alert("Login required")
+    if (!tokenRef.current) return toast.error("Login required")
 
     await API.post(`/blogs/${id}/comments/`, {
       content: newComment

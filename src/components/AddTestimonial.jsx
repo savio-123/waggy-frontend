@@ -40,7 +40,7 @@ export default function AddTestimonial() {
         }
       )
 
-      alert("Testimonial added!")
+      toast.success("Testimonial added!")
       setMessage("")
 
 
