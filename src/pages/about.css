@@ -2,7 +2,7 @@
 .about-clean {
     position: relative;
     min-height: 100vh;
-    background: url("public/images/pexels-ciro-palomba-1275986148-30526595.jpg") center/cover no-repeat;
+    background: url("/images/pexels-ciro-palomba-1275986148-30526595.jpg") center/cover no-repeat;
     color: white;
   }
   
