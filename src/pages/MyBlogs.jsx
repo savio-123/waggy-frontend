@@ -80,7 +80,7 @@ export default function MyBlogs() {
                   alt={blog.title}
                   className="card-img-top"
                   style={{
-                    height: "220px",
+                    height: "250px",
                     objectFit: "cover"
                   }}
                 />
