@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import Preloader from "../components/Preloader"
 import Header from "../components/Header"
 import Banner from "../components/Banner"
@@ -20,10 +20,24 @@ import TestimonialSection from "../components/TestimonialSection"
 
 
 export default function Home({isAdmin}) {
+
+  const firstRender = useRef(true);
+  const productsRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("clothes")
-  useEffect(() => {
-    window.scrollTo({ top: 900, behavior: "smooth" })
-  }, [selectedCategory])
+
+    useEffect(() => {
+
+      if (firstRender.current) {
+        firstRender.current = false
+        return
+      }
+
+      productsRef.current?.scrollIntoView({
+        behavior: "smooth"
+      })
+
+    }, [selectedCategory])
+
   return (
     <>
       <Svg />
@@ -32,9 +46,11 @@ export default function Home({isAdmin}) {
       <OffcanvasSearch />
       <Header isAdmin={isAdmin} onCategoryChange={setSelectedCategory} />
       <Banner />
-      {selectedCategory === "food" && <Foodies />}
-      {selectedCategory === "clothes" && <Clothing />}
-      {selectedCategory === "toy" && <Toys />}
+      <div ref={productsRef}>
+        {selectedCategory === "food" && <Foodies />}
+        {selectedCategory === "clothes" && <Clothing />}
+        {selectedCategory === "toy" && <Toys />}
+      </div>
       <Banner2 />
       <TestimonialSection/>
       <BestSelling />
