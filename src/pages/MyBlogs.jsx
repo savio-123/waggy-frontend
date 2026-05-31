@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import API from "../api"
 import toast from "react-hot-toast"
+import Swal from "sweetalert2"
 
 export default function MyBlogs() {
 
