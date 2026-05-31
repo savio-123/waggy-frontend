@@ -119,6 +119,8 @@ export default function Header2({ isAdmin }) {
                         <Link to="/orders" className="dropdown-item">Orders</Link>
                         <Link to="/address" className="dropdown-item">Address</Link>
                         <Link to="/add-product" className="dropdown-item">Add Product</Link>
+                        <Link to="/add-blog" className="dropdown-item">Add Blog</Link>
+                        <Link to="/my-blogs" className="dropdown-item">My Blogs</Link>
                         <button
                           className="dropdown-item"
                           style={{color:'red'}} 
@@ -199,6 +201,8 @@ export default function Header2({ isAdmin }) {
                 <li><Link to="/orders" className="nav-link">Orders</Link></li>
                 <li><Link to="/address" className="nav-link">Address</Link></li>
                 <li><Link to="/add-product" className="nav-link">Add Product</Link></li>
+                <li><Link to="/add-blog" className="dropdown-item">Add Blog</Link></li>
+                <li><Link to="/my-blogs" className="dropdown-item">My Blogs</Link></li>
 
                 <li>
                   <button

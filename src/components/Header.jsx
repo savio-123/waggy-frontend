@@ -195,6 +195,9 @@ export default function Header({isAdmin,onCategoryChange }) {
                           <Link to="/orders" className="dropdown-item">Orders</Link>
                           <Link to="/address" className="dropdown-item">Address</Link>
                           <Link to="/add-product" className="dropdown-item">Add Product</Link>
+                          <Link to="/add-blog" className="dropdown-item">Add Blog</Link>
+                          <Link to="/my-blogs" className="dropdown-item">My Blogs</Link>
+
                           <button
                           className="dropdown-item logout-btn border-0 bg-transparent"
                           style={{
@@ -292,6 +295,8 @@ export default function Header({isAdmin,onCategoryChange }) {
                     <li><Link to="/orders" className="nav-link">Your Orders</Link></li>
                     <li><Link to="/address" className="nav-link">Your Address</Link></li>
                     <li><Link to="/add-product" className="nav-link">Add Product</Link></li>
+                    <li><Link to="/add-blog" className="nav-link">Add Blog</Link></li>
+                    <li><Link to="/my-blogs" className="nav-link">My Blogs</Link></li>
                     <li>
                     <button
                     className="dropdown-item logout-btn border-0 bg-transparent"

@@ -27,6 +27,8 @@ import Orders from "./pages/Orders";
 import Address from "./pages/Address";
 import Blogs from "./pages/Blogs";
 import BlogDetail from "./pages/BlogDetail";
+import MyBlogs from "./pages/MyBlogs";
+import EditBlog from "./pages/EditBlog";
 import AddBlog from "./pages/AddBlog";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
@@ -184,6 +186,8 @@ function App() {
             <Route path="/address" element={<Address />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:id" element={<BlogDetail />} />
+            <Route path="/my-blogs" element={<MyBlogs />} />
+            <Route path="/edit-blog/:id" element={<EditBlog />} />
             <Route path="/add-blog" element={<AddBlog />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
