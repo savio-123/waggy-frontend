@@ -79,7 +79,8 @@ export default function Blogs() {
 
                 <Link to={`/blogs/${blog.id}`}>
                   <img
-                    src={blog.image}
+                    src={blog.image_url}
+                    alt={blog.title}
                     className="img-fluid rounded-4"
                   />
                 </Link>

@@ -114,7 +114,7 @@ export default function BlogDetail() {
         </button>
       </div>
 
-      <img src={blog.image} className="img-fluid rounded mb-4" />
+      <img src={blog.image_url} className="img-fluid rounded mb-4" />
 
       <p style={{ lineHeight: "1.8" }}>{blog.content}</p>
 
