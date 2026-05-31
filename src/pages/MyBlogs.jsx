@@ -34,23 +34,25 @@ export default function MyBlogs() {
 
   const deleteBlog = async (id) => {
 
-    if (!toast.error("Delete this blog?")) return
-
-    try {
-      await API.delete(`/blogs/${id}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-
-      toast.success("Blog deleted")
-
-      setBlogs(prev => prev.filter(blog => blog.id !== id))
-
-    } catch (err) {
-      console.log(err)
-      toast.error("Delete failed")
-    }
+    const result = await Swal.fire({
+      title: "Delete Blog?",
+      text: "This action cannot be undone.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel"
+    })
+  
+    if (!result.isConfirmed) return
+  
+    await API.delete(`/blogs/${id}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  
+    toast.success("Blog deleted")
+    fetchBlogs()
   }
 
   if (loading) {
