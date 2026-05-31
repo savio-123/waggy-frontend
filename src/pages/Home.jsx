@@ -22,7 +22,7 @@ import TestimonialSection from "../components/TestimonialSection"
 export default function Home({isAdmin}) {
   const [selectedCategory, setSelectedCategory] = useState("clothes")
   useEffect(() => {
-    window.scrollTo({ top: 300, behavior: "smooth" })
+    window.scrollTo({ top: 600, behavior: "smooth" })
   }, [selectedCategory])
   return (
     <>
