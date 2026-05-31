@@ -313,17 +313,6 @@ function OrdersAdmin() {
                 className='d-flex flex-column gap-2 mt-3 align-items-center' 
               >
 
-                {!(order.status === "Delivered" && order.is_paid) && (
-                  <button
-                    className="btn btn-outline-dark w-50"
-                    onClick={() =>
-                      confirmOrder(order.id, order.status, order.is_paid)
-                    }
-                  >
-                    ✔ Confirm
-                  </button>
-                )}
-
                 <button
                   className={`btn btn-danger ${
                     order.status === "Delivered" && order.is_paid ? "w-50" : "w-50"

@@ -228,7 +228,7 @@ export default function Address() {
                     onClick={async () => {
                       await API.put(`/addresses/${addr.id}/`,
                         { is_default: true },
-                        { headers: { Authorization: `Bearer ${token}` } }
+                        { headers: { Authorization: `Bearer ${tokenRef.current}` } }
                       )
                       fetchAddresses()
                     }}
