@@ -34,7 +34,7 @@ export default function MyBlogs() {
 
   const deleteBlog = async (id) => {
 
-    if (!window.confirm("Delete this blog?")) return
+    if (!toast.error("Delete this blog?")) return
 
     try {
       await API.delete(`/blogs/${id}/`, {
