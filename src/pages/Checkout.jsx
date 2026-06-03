@@ -2,12 +2,15 @@ import { useEffect, useState, useRef } from "react"
 import API from "../api"
 import { useNavigate, useLocation } from "react-router-dom"
 import toast from "react-hot-toast"
+import { useDispatch } from "react-redux"
+import { clearCart } from "../features/CartSlice"
 
 export default function Checkout() {
 
   const [cartItems, setCartItems] = useState([])
   const [address, setAddress] = useState(null)
   const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
   const location = useLocation()
