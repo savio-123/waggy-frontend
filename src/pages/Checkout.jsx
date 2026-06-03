@@ -93,8 +93,9 @@ export default function Checkout() {
             }
           )
         
-          dispatch(clearCart())
+          
           toast.success("Payment successful 🎉")
+          dispatch(clearCart())
           navigate("/orders")
         }
       }
@@ -117,9 +118,9 @@ export default function Checkout() {
         }
       )
 
-      dispatch(clearCart())
-      toast.success("Order placed with Cash on Delivery ✅")
       
+      toast.success("Order placed with Cash on Delivery ✅")
+      dispatch(clearCart())
       navigate("/orders")
 
     } catch (err) {
