@@ -16,7 +16,7 @@ export default function OffcanvasCart() {
   const tokenRef = useRef(localStorage.getItem("token"))
 
   // =========================
-  // OPEN CART (GLOBAL EVENT)
+  // OPEN CART 
   // =========================
   useEffect(() => {
     if (open) {
@@ -151,7 +151,7 @@ export default function OffcanvasCart() {
                   <button
                   className="btn btn-sm btn-danger ms-2"
                   onClick={(e) => {
-                    e.stopPropagation()   // ✅ VERY IMPORTANT
+                    e.stopPropagation() 
                     handleRemove(item.product.id)
                   }}
                 >

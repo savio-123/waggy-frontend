@@ -6,7 +6,7 @@ export default function Preloader() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    }, 1000) // 1 second
+    }, 1000) 
   }, [])
 
   if (!loading) return null

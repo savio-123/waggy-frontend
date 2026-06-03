@@ -10,7 +10,6 @@ const CartSlice = createSlice({
   reducers: {
 
     setCart: (state, action) => {
-      // ✅ map backend format → redux format
       state.items = action.payload.map(item => ({
         id: item.product.id,
         quantity: item.quantity,

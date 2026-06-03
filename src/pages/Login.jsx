@@ -59,20 +59,20 @@ export default function Login() {
     <section className="container-fluid vh-100 overflow-hidden">
      <div className="row h-100">
 
-        {/* 🔥 LEFT IMAGE */}
+        {/*  LEFT IMAGE */}
         <div className="col-md-6 d-none d-md-block p-0 ">
         <img
           src="/images/login4.png"
           alt="login"
           style={{
             width: "100%",
-            height: "100vh",   // 👈 force full viewport height
+            height: "100vh",  
             objectFit: "cover"
           }}
         />
         </div>
 
-        {/* 🔥 RIGHT FORM */}
+        {/*  RIGHT FORM */}
         <div className="col-md-6 d-flex align-items-center justify-content-center login-bg">
 
 <div className="glass-card">          

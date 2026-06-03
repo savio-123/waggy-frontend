@@ -86,13 +86,13 @@ export default function Header({isAdmin,onCategoryChange }) {
 
     <div className="col-6 col-lg-4 d-flex justify-content-end align-items-center gap-4">
 
-{/* ✅ DESKTOP PHONE */}
+{/* DESKTOP PHONE */}
 <div className="text-end d-none d-lg-block">
   <span className="text-muted small d-block">Phone</span>
   <h6 className="mb-0 fw-semibold">+980-34984089</h6>
 </div>
 
-{/* ✅ MOBILE TOGGLE (REPLACES PHONE) */}
+{/* MOBILE TOGGLE (REPLACES PHONE) */}
 <div className="d-lg-none">
 <button
   className="border-0 bg-transparent"

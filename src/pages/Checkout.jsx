@@ -61,8 +61,6 @@ export default function Checkout() {
   const platformFee = 15
   const total = subtotal + platformFee
 
-  // ✅ HANDLERS (clean)
-
   const handlePayment = async () => {
     try {
       const res = await API.post(
@@ -92,6 +90,7 @@ export default function Checkout() {
             }
           )
         
+          dispatch(clearCart())
           toast.success("Payment successful 🎉")
           navigate("/orders")
         }
@@ -115,7 +114,9 @@ export default function Checkout() {
         }
       )
 
+      dispatch(clearCart())
       toast.success("Order placed with Cash on Delivery ✅")
+      
       navigate("/orders")
 
     } catch (err) {

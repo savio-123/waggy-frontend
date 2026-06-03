@@ -22,7 +22,7 @@ export default function Clothing() {
 
   const tokenRef = useRef(localStorage.getItem("token"))
 
-  // ✅ optimized wishlist lookup
+  //  optimized wishlist lookup
   const wishlistSet = useMemo(() => 
     new Set(wishlistItems.map(i => i.product.id)),
   [wishlistItems])
@@ -90,7 +90,7 @@ export default function Clothing() {
     })
   
     return () => swiper.destroy(true, true)
-  }, [products])   // ✅ FIXED
+  }, [products])   //  FIXED
 
   // ======================
   // FILTER

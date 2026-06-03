@@ -21,7 +21,7 @@ export default function ForgotPassword() {
       toast.success("Reset link sent to email 📩")
 
       setTimeout(() => {
-        navigate("/login", { replace: true })  // ✅ important
+        navigate("/login", { replace: true }) 
       }, 1500)
 
     } catch {

@@ -11,11 +11,9 @@ export default function Cart() {
 
   const navigate = useNavigate()
 
-  // ✅ useRef (no re-render)
   const tokenRef = useRef(localStorage.getItem("token"))
   const fetchedRef = useRef(false)
 
-  // ✅ COMBINED FETCH
   const fetchAll = async () => {
     try {
       const [cartRes, addrRes] = await Promise.all([
@@ -45,13 +43,10 @@ export default function Cart() {
     fetchAll()
   }, [])
 
-  // FIX bootstrap leftover
   useEffect(() => {
     document.body.classList.remove("modal-open")
     document.querySelectorAll(".offcanvas-backdrop").forEach(el => el.remove())
   }, [])
-
-  // ✅ HANDLERS (clean, reusable)
 
   const updateCart = async (url, productId) => {
     await API.post(url,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import API from "../api"   // ✅ use this
+import API from "../api" 
 
 export default function LatestBlog() {
 
@@ -9,7 +9,7 @@ export default function LatestBlog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await API.get("/blogs/")   // ✅ FIX
+        const res = await API.get("/blogs/") 
         setBlogs(res.data)
       } catch (err) {
         console.log(err)

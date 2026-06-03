@@ -46,12 +46,12 @@ function App() {
   const dispatch = useDispatch();
 
 
-  // ✅ TOKEN STATE (IMPORTANT)
+
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isAdmin, setIsAdmin] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  // ✅ LISTEN FOR LOGIN (NO REFRESH NEEDED)
+ 
   useEffect(() => {
 
     const updateAuth = () => {
@@ -68,7 +68,6 @@ function App() {
   
   }, []);
 
-  // ✅ CLEAN BOOTSTRAP BUGS
   useEffect(() => {
     const cleanBootstrap = () => {
       document.body.classList.remove("modal-open");
@@ -86,7 +85,7 @@ function App() {
     };
   }, []);
 
-  // ✅ FETCH PROFILE (ADMIN DETECTION)
+
   useEffect(() => {
     if (!token) {
       setIsAdmin(false);
@@ -113,7 +112,7 @@ function App() {
     fetchProfile();
   }, [token]);
 
-  // ✅ FETCH CART
+
   useEffect(() => {
     if (!token) return;
 
@@ -134,7 +133,7 @@ function App() {
     fetchCart();
   }, [dispatch, token]);
 
-  // ✅ FETCH WISHLIST
+
   useEffect(() => {
     if (!token) return;
 

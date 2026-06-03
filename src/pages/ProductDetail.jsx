@@ -23,7 +23,7 @@ export default function ProductDetail() {
 
   const [loadingId, setLoadingId] = useState(null)
 
-  // ✅ stable token
+  // stable token
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const fetchData = async () => {

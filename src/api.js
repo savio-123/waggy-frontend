@@ -4,7 +4,6 @@ const API = axios.create({
   baseURL: "https://waggy-backend-rhf8.onrender.com/api",
 });
 
-// 🔹 Attach token
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -13,7 +12,7 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-// 🔹 Auto refresh on 401
+
 API.interceptors.response.use(
   (res) => res,
   async (error) => {
@@ -39,12 +38,11 @@ API.interceptors.response.use(
 
         localStorage.setItem("token", newAccess);
 
-        // retry original request
         originalRequest.headers.Authorization = `Bearer ${newAccess}`;
         return API(originalRequest);
 
       } catch (err) {
-        // ❌ refresh failed → logout
+  
         localStorage.removeItem("token");
         localStorage.removeItem("refresh");
 

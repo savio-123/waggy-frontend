@@ -8,7 +8,7 @@ export default function Profile() {
   const [editing, setEditing] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  // ✅ stable token
+  //  stable token
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const fetchProfile = async () => {
@@ -20,7 +20,7 @@ export default function Profile() {
       })
 
       setProfile(res.data)
-      setOriginalProfile(res.data) // ✅ backup
+      setOriginalProfile(res.data) //  backup
 
     } catch (err) {
       console.log(err)
@@ -51,7 +51,7 @@ export default function Profile() {
 
     const formData = new FormData()
 
-    // ✅ send only editable fields
+    //  send only editable fields
     const allowedFields = ["phone", "gender", "city", "state", "pincode", "image"]
 
     allowedFields.forEach(key => {
@@ -76,7 +76,7 @@ export default function Profile() {
     }
   }
 
-  // ✅ cancel restore
+  //  cancel restore
   const handleCancel = () => {
     setProfile(originalProfile)
     setEditing(false)
