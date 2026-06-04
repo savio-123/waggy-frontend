@@ -1,9 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import API from "../api"
 
 export default function Register() {
 
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -45,15 +48,15 @@ export default function Register() {
 
     try {
 
-      const res = await API.post(
+      setLoading(true)
+    
+      await API.post(
         "/auth/register/",
         form
       )
     
       toast.success("Account created! 🎉")
-    
-      window.location.href = "/login"
-    
+      navigate("/login")
     } catch (err) {
     
       const message =
@@ -62,6 +65,8 @@ export default function Register() {
     
       toast.error(message)
     
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -118,8 +123,21 @@ export default function Register() {
                 required
               />
 
-              <button className="btn btn-dark w-100">
-                Register
+              <button
+                className="btn btn-dark w-100"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    />
+                    Registering...
+                  </>
+                ) : (
+                  "Register"
+                )}
               </button>
 
             </form>

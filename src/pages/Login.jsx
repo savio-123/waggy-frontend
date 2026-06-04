@@ -15,6 +15,7 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [otpLoading, setOtpLoading] = useState(false)
   const [showOTP, setShowOTP] = useState(false)
   const [otp, setOtp] = useState("")
   const [usernameForOTP, setUsernameForOTP] = useState("")
@@ -67,27 +68,20 @@ export default function Login() {
   
     try {
   
+      setOtpLoading(true)
+  
       const res = await API.post(
         "/auth/verify-otp/",
         {
           username: usernameForOTP,
-          otp: otp
+          otp
         }
       )
   
-      localStorage.setItem(
-        "token",
-        res.data.access
-      )
+      localStorage.setItem("token", res.data.access)
+      localStorage.setItem("refresh", res.data.refresh)
   
-      localStorage.setItem(
-        "refresh",
-        res.data.refresh
-      )
-  
-      window.dispatchEvent(
-        new Event("login")
-      )
+      window.dispatchEvent(new Event("login"))
   
       toast.success("Login successful 🎉")
   
@@ -100,6 +94,8 @@ export default function Login() {
         "Invalid OTP"
       )
   
+    } finally {
+      setOtpLoading(false)
     }
   }
 
@@ -181,7 +177,17 @@ export default function Login() {
         className="btn btn-dark w-100 login-btn"
         disabled={loading}
       >
-        {loading ? "Sending OTP..." : "Login"}
+        {loading ? (
+          <>
+            <span
+              className="spinner-border spinner-border-sm me-2"
+              role="status"
+            />
+            Sending OTP...
+          </>
+        ) : (
+          "Login"
+        )}
       </button>
 
     </>
@@ -200,8 +206,19 @@ export default function Login() {
         type="button"
         className="btn btn-success w-100"
         onClick={verifyOTP}
+        disabled={otpLoading}
       >
-        Verify OTP
+        {otpLoading ? (
+          <>
+            <span
+              className="spinner-border spinner-border-sm me-2"
+              role="status"
+            />
+            Verifying...
+          </>
+        ) : (
+          "Verify OTP"
+        )}
       </button>
 
     </>
