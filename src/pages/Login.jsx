@@ -15,6 +15,9 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [showOTP, setShowOTP] = useState(false)
+  const [otp, setOtp] = useState("")
+  const [usernameForOTP, setUsernameForOTP] = useState("")
 
   const handleChange = (e) => {
     setForm(prev => ({
@@ -35,14 +38,15 @@ export default function Login() {
 
       const res = await API.post("/auth/login/", form)
 
-      if (res.data.access) {
-        localStorage.setItem("token", res.data.access)
-        localStorage.setItem("refresh", res.data.refresh)
+      if (res.data.message === "OTP sent successfully") {
 
-        window.dispatchEvent(new Event("login"))
-
-        toast.success("Login successful 🎉")
-        navigate('/')
+        setUsernameForOTP(res.data.username)
+      
+        setShowOTP(true)
+      
+        toast.success("OTP sent to your phone")
+      
+        return
       }
 
     } catch (err) {
@@ -52,6 +56,50 @@ export default function Login() {
       toast.error(message)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const verifyOTP = async () => {
+
+    if (!otp) {
+      return toast.error("Enter OTP")
+    }
+  
+    try {
+  
+      const res = await API.post(
+        "/auth/verify-otp/",
+        {
+          username: usernameForOTP,
+          otp: otp
+        }
+      )
+  
+      localStorage.setItem(
+        "token",
+        res.data.access
+      )
+  
+      localStorage.setItem(
+        "refresh",
+        res.data.refresh
+      )
+  
+      window.dispatchEvent(
+        new Event("login")
+      )
+  
+      toast.success("Login successful 🎉")
+  
+      navigate("/")
+  
+    } catch (err) {
+  
+      toast.error(
+        err.response?.data?.error ||
+        "Invalid OTP"
+      )
+  
     }
   }
 
@@ -85,56 +133,81 @@ export default function Login() {
 
   <form onSubmit={handleSubmit}>
 
-    {/* USERNAME */}
-    <div className="input-group-custom">
-      <FaUser className="input-icon" />
+  {!showOTP ? (
+    <>
+
+      <div className="input-group-custom">
+        <FaUser className="input-icon" />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={form.username}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="input-group-custom">
+        <FaLock className="input-icon" />
+
+        <input
+          type={showPassword ? "text" : "password"}
+          name="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
+
+        <span
+          className="eye-icon"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </span>
+      </div>
+
+      <div className="text-end mb-3">
+        <span
+          className="forgot-link"
+          onClick={() => navigate("/forgot-password")}
+        >
+          Forgot password?
+        </span>
+      </div>
+
+      <button
+        className="btn btn-dark w-100 login-btn"
+        disabled={loading}
+      >
+        {loading ? "Sending OTP..." : "Login"}
+      </button>
+
+    </>
+  ) : (
+    <>
+
       <input
         type="text"
-        name="username"
-        placeholder="Username"
-        value={form.username}
-        onChange={handleChange}
-        required
-      />
-    </div>
-
-    {/* PASSWORD */}
-    <div className="input-group-custom">
-      <FaLock className="input-icon" />
-
-      <input
-        type={showPassword ? "text" : "password"}
-        name="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={handleChange}
-        required
+        className="form-control mb-3"
+        placeholder="Enter OTP"
+        value={otp}
+        onChange={(e) => setOtp(e.target.value)}
       />
 
-      <span
-        className="eye-icon"
-        onClick={() => setShowPassword(!showPassword)}
+      <button
+        type="button"
+        className="btn btn-success w-100"
+        onClick={verifyOTP}
       >
-        {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </span>
-    </div>
+        Verify OTP
+      </button>
 
-    {/* FORGOT */}
-    <div className="text-end mb-3">
-      <span
-        className="forgot-link"
-        onClick={() => navigate("/forgot-password")}
-      >
-        Forgot password?
-      </span>
-    </div>
+    </>
+  )}
 
-    {/* BUTTON */}
-    <button className="btn btn-dark w-100 login-btn" disabled={loading}>
-      {loading ? "Logging in..." : "Login"}
-    </button>
-
-  </form>
+</form>
 
 </div>
 
