@@ -1,5 +1,6 @@
 import { useState } from "react"
 import toast from "react-hot-toast"
+import API from "../api"
 
 export default function Register() {
 
@@ -43,26 +44,24 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch("https://waggy-backend-rhf8.onrender.com/api/auth/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      })
 
-      const data = await res.json()
-
-      if (res.ok) {
-        toast.success("Account created! 🎉")
-        window.location.href = "/login"
-      } else {
-        toast.error(data.error || "Registration failed")
-      }
-
+      const res = await API.post(
+        "/auth/register/",
+        form
+      )
+    
+      toast.success("Account created! 🎉")
+    
+      window.location.href = "/login"
+    
     } catch (err) {
-      console.log(err)
-      toast.error("Server error")
+    
+      const message =
+        err.response?.data?.error ||
+        "Registration failed"
+    
+      toast.error(message)
+    
     }
   }
 
