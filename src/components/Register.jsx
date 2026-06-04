@@ -6,6 +6,7 @@ export default function Register() {
   const [form, setForm] = useState({
     username: "",
     email: "",
+    phone: "",
     password: ""
   })
 
@@ -19,7 +20,11 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const { username, email, password } = form  
+    const {phone, password } = form 
+
+    if (!phone.startsWith("+")) {
+      return toast.error("Use country code. Example: +919876543210")
+    }
 
     if (password.length < 8) {
       return toast.error("Min 8 characters required")
@@ -91,6 +96,15 @@ export default function Register() {
                 name="email"
                 className="form-control form-control-lg mb-3"
                 placeholder="Email"
+                onChange={handleChange}
+                required
+              />
+              
+              <input
+                type="tel"
+                name="phone"
+                className="form-control form-control-lg mb-3"
+                placeholder="+919876543210, include country code"
                 onChange={handleChange}
                 required
               />
