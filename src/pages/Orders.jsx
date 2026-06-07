@@ -9,7 +9,6 @@ export default function Orders() {
 
   const navigate = useNavigate()
 
-  // ✅ stable token
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const fetchOrders = async () => {
@@ -51,17 +50,15 @@ export default function Orders() {
 
       <h3 className="fw-bold mb-4 text-dark">My Orders</h3>
 
-      {/* ✅ LOADING */}
+
       {loading && (
         <p className="text-center text-muted">Loading orders...</p>
       )}
 
-      {/* ✅ EMPTY */}
       {!loading && orders.length === 0 && (
         <p className="text-muted text-center">No orders yet</p>
       )}
 
-      {/* ✅ LIST */}
       {orders.map(order => (
         <div
           key={order.id}
@@ -79,7 +76,7 @@ export default function Orders() {
               {new Date(order.created_at).toLocaleDateString()}
             </small>
 
-            {/* ✅ PRODUCT NAMES */}
+
             <small className="text-muted">
               {order.items?.map((item, index) => (
                 <span key={index}>

@@ -47,20 +47,16 @@ export default function Header({isAdmin,onCategoryChange }) {
 
       {/* TOP */}
       <div className="container py-2">
-  <div className="row py-4 pb-0 pb-sm-4 align-items-center">
-
-    {/* LOGO */}
-    <div className="col-6 col-lg-3">
-      <Link to="/">
-        <img
-          src="/images/logo.png"
-          className="img-fluid"
-          style={{ maxHeight: "50px" }}
-        />
-      </Link>
-    </div>
-
-    {/* DESKTOP SEARCH */}
+       <div className="row py-4 pb-0 pb-sm-4 align-items-center">
+        <div className="col-6 col-lg-3">
+          <Link to="/">
+            <img
+              src="/images/logo.png"
+              className="img-fluid"
+              style={{ maxHeight: "50px" }}
+            />
+          </Link>
+        </div>
     <div className="col-lg-5 d-none d-lg-block">
       <div className="search-bar border rounded-2 px-3 border-dark-subtle">
         <form
@@ -85,53 +81,32 @@ export default function Header({isAdmin,onCategoryChange }) {
     </div>
 
     <div className="col-6 col-lg-4 d-flex justify-content-end align-items-center gap-4">
-
-{/* DESKTOP PHONE */}
-<div className="text-end d-none d-lg-block">
-  <span className="text-muted small d-block">Phone</span>
-  <h6 className="mb-0 fw-semibold">+980-34984089</h6>
-</div>
-
-{/* MOBILE TOGGLE (REPLACES PHONE) */}
-<div className="d-lg-none">
-<button
-  className="border-0 bg-transparent"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasNavbar"
->
-  <span style={{ fontSize: "22px" }}>☰</span>
-</button>
-</div>
-
-{/* EMAIL (DESKTOP ONLY) */}
-<div className="text-end d-none d-xl-block">
-  <span className="text-muted small d-block">Email</span>
-  <h6 className="mb-0">waggy@gmail.com</h6>
-</div>
-
-</div>
-
+      <div className="text-end d-none d-lg-block">
+        <span className="text-muted small d-block">Phone</span>
+        <h6 className="mb-0 fw-semibold">+980-34984089</h6>
+      </div>
+      <div className="d-lg-none">
+      <button
+        className="border-0 bg-transparent"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+      >
+        <span style={{ fontSize: "22px" }}>☰</span>
+      </button>
+      </div>
+      <div className="text-end d-none d-xl-block">
+        <span className="text-muted small d-block">Email</span>
+        <h6 className="mb-0">waggy@gmail.com</h6>
+      </div>
+      </div>
+    </div>
   </div>
-</div>
-
-
-     
       <hr className="m-3" />
-
-       {/* MOBILE SEARCH */}
-      
-
-
       {/* NAVBAR */}
       <div className="container">
         <nav className="main-menu navbar navbar-expand-lg">
-
           <div className="d-flex align-items-center justify-content-between w-100">
-
-            {/* LEFT: CATEGORY */}
             <div className="d-flex align-items-center">
-              
-              {/* DESKTOP */}
               <div className="d-none d-lg-block me-3">
                 <select
                   className="filter-categories border-0"
@@ -143,8 +118,6 @@ export default function Header({isAdmin,onCategoryChange }) {
                   <option value="toy">Toy</option>
                 </select>
               </div>
-
-              {/* MOBILE */}
               <div className="d-lg-none">
                 <select
                   className="filter-categories border-0"
@@ -158,8 +131,6 @@ export default function Header({isAdmin,onCategoryChange }) {
               </div>
 
             </div>
-
-            {/* CENTER NAV */}
             <ul className="navbar-nav d-none d-lg-flex gap-3 mx-auto">
               <li><Link to="/" className="nav-link">Home</Link></li>
               <li><Link to="/shop" className="nav-link">Shop</Link></li>
@@ -171,12 +142,8 @@ export default function Header({isAdmin,onCategoryChange }) {
               </Link>
             )}</li>
             </ul>
-
-            {/* RIGHT ICONS */}
             <div className="d-none d-lg-flex align-items-center">
               <ul className="d-flex list-unstyled m-0">
-
-                {/* PROFILE */}
                 <li ref={dropdownRef}>
                   <button
                     className="mx-3 border-0 bg-transparent"
@@ -238,8 +205,6 @@ export default function Header({isAdmin,onCategoryChange }) {
 
               </ul>
             </div>
-
-            {/* MOBILE TOGGLE */}
             <div className="d-lg-none">
                <div className="d-lg-none px-3 mb-2">
         <form
@@ -277,8 +242,6 @@ export default function Header({isAdmin,onCategoryChange }) {
                 </li>
                 <li><Link to="/about" className="nav-link">About</Link></li>    
           </ul>
-
-          {/* OFFCANVAS */}
           <div className="offcanvas offcanvas-end" id="offcanvasNavbar">
 
             <div className="offcanvas-header">
@@ -308,7 +271,7 @@ export default function Header({isAdmin,onCategoryChange }) {
                     onClick={handleLogout}
                   >
                     Logout
-</button>
+                     </button>
                     </li>
                   </>
                 ) : (

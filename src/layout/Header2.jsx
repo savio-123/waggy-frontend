@@ -54,7 +54,6 @@ export default function Header2({ isAdmin }) {
       <div className="container py-2">
         <div className="row align-items-center py-3">
 
-          {/* LOGO */}
           <div className="col-6 col-lg-3">
             <Link to="/">
               <img src="/images/logo.png" className="img-fluid" alt="logo" />
@@ -71,15 +70,9 @@ export default function Header2({ isAdmin }) {
             </ul>
           </div>
 
-          {/* RIGHT SIDE */}
           <div className="col-6 col-lg-3 d-flex justify-content-end align-items-center gap-2">
-
-            {/* MOBILE ICONS */}
             <div className="d-flex d-lg-none align-items-center gap-2">
-
               <Link to="/wishlist" className="mx-2">❤️</Link>
-
-              {/* ✅ FIXED */}
               <button
                 className="border-0 bg-transparent"
                 onClick={() => navigate('/profile')}
@@ -96,8 +89,6 @@ export default function Header2({ isAdmin }) {
               </button>
 
             </div>
-
-            {/* DESKTOP ICONS */}
             <ul className="d-none d-lg-flex list-unstyled m-0 align-items-center">
 
               <li ref={dropdownRef}>
@@ -142,8 +133,6 @@ export default function Header2({ isAdmin }) {
               <li>
                 <Link to="/wishlist" className="mx-2">❤️</Link>
               </li>
-
-              {/* ✅ CART FIXED */}
               <li>
                 <span
                   className="mx-2"
@@ -177,8 +166,6 @@ export default function Header2({ isAdmin }) {
         </li>
         <li><Link to="/about" className="nav-link">About</Link></li>
       </ul>
-
-      {/* OFFCANVAS MENU */}
       <div className="offcanvas offcanvas-end" id="offcanvasNavbar">
 
         <div className="offcanvas-header">

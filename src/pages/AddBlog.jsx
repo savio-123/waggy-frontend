@@ -26,7 +26,6 @@ export default function AddBlog() {
     }
   }, [])
 
-  // HANDLE INPUT
   const handleChange = (e) => {
     const { name, value, files } = e.target
 
@@ -38,7 +37,6 @@ export default function AddBlog() {
         image: file
       }))
 
-      // IMAGE PREVIEW
       if (file) {
         setPreview(URL.createObjectURL(file))
       }
@@ -51,7 +49,6 @@ export default function AddBlog() {
     }
   }
 
-  // SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -96,7 +93,6 @@ export default function AddBlog() {
 
       <form onSubmit={handleSubmit}>
 
-        {/* TITLE */}
         <input
           type="text"
           name="title"
@@ -105,8 +101,6 @@ export default function AddBlog() {
           value={form.title}
           onChange={handleChange}
         />
-
-        {/* CONTENT */}
         <textarea
           name="content"
           placeholder="Write your blog content..."
@@ -115,16 +109,12 @@ export default function AddBlog() {
           value={form.content}
           onChange={handleChange}
         />
-
-        {/* IMAGE */}
         <input
           type="file"
           name="image"
           className="form-control mb-3"
           onChange={handleChange}
         />
-
-        {/* IMAGE PREVIEW */}
         {preview && (
           <div className="mb-3">
             <img
@@ -139,8 +129,6 @@ export default function AddBlog() {
             />
           </div>
         )}
-
-        {/* BUTTON */}
         <button
           className="btn btn-dark w-100"
           disabled={loading}

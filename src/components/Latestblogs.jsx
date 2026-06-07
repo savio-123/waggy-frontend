@@ -48,13 +48,10 @@ export default function LatestBlog() {
             return (
               <div className="col-md-4 my-4 my-md-0" key={blog.id}>
 
-                {/* DATE BADGE */}
                 <div className="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
                   <h3 className="secondary-font text-primary m-0">{day}</h3>
                   <p className="secondary-font fs-6 m-0">{month}</p>
                 </div>
-
-                {/* CARD */}
                 <div className="card position-relative">
 
                   <Link to={`/blogs/${blog.id}`}>

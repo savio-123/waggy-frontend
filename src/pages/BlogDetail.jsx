@@ -13,13 +13,11 @@ export default function BlogDetail() {
   const [editingComment, setEditingComment] = useState(null)
   const [editText, setEditText] = useState("")
 
-  // ✅ useRef (no re-render)
   const replyRef = useRef({})
   const tokenRef = useRef(localStorage.getItem("token"))
   const userRef = useRef(JSON.parse(localStorage.getItem("user")))
   const userId = userRef.current?.id
 
-  // ✅ COMBINED FETCH (faster)
   const fetchAll = async () => {
     try {
       const [blogRes, commentRes] = await Promise.all([
@@ -39,7 +37,6 @@ export default function BlogDetail() {
     fetchAll()
   }, [id])
 
-  // LIKE
   const handleLike = async () => {
     if (!tokenRef.current) return toast.error("Login required")
 
@@ -50,7 +47,6 @@ export default function BlogDetail() {
     fetchAll()
   }
 
-  // ADD COMMENT
   const handleComment = async () => {
     if (!tokenRef.current) return toast.error("Login required")
 
@@ -64,7 +60,6 @@ export default function BlogDetail() {
     fetchAll()
   }
 
-  // DELETE
   const handleDelete = async (commentId) => {
     await API.delete(`/comments/${commentId}/`, {
       headers: { Authorization: `Bearer ${tokenRef.current}` }
@@ -72,7 +67,6 @@ export default function BlogDetail() {
     fetchAll()
   }
 
-  // EDIT
   const handleEdit = async (commentId) => {
     await API.put(`/comments/${commentId}/`, {
       content: editText
@@ -83,8 +77,6 @@ export default function BlogDetail() {
     setEditingComment(null)
     fetchAll()
   }
-
-  // REPLY (🔥 no state re-render)
   const handleReply = async (commentId) => {
     await API.post(`/comments/${commentId}/reply/`, {
       content: replyRef.current[commentId]
@@ -117,8 +109,6 @@ export default function BlogDetail() {
       <img src={blog.image_url} className="img-fluid rounded mb-4" />
 
       <p style={{ lineHeight: "1.8" }}>{blog.content}</p>
-
-      {/* ADD COMMENT */}
       <div className="d-flex gap-2 my-4">
         <input
           className="form-control"
@@ -131,7 +121,6 @@ export default function BlogDetail() {
         </button>
       </div>
 
-      {/* COMMENTS */}
       {comments.map(c => (
         <div key={c.id} className="border p-3 mb-3 rounded">
 
@@ -183,7 +172,6 @@ export default function BlogDetail() {
             </div>
           )}
 
-          {/* REPLIES */}
           {c.replies.map(r => (
           <div key={r.id} className="ms-4 mt-2 border-start ps-3 d-flex gap-2">
 
@@ -199,8 +187,6 @@ export default function BlogDetail() {
 
           </div>
         ))}
-
-          {/* ADD REPLY */}
           <div className="d-flex gap-2 mt-2">
             <input
               className="form-control form-control-sm"

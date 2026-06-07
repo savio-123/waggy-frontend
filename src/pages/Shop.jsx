@@ -204,8 +204,6 @@
 
             {/* PRODUCTS */}
             <div className="col-md-9">
-
-              {/* TOP BAR */}
               <div className="d-flex justify-content-between mb-3 flex-wrap gap-2">
 
                 <input
@@ -249,8 +247,6 @@
                   Filters
                 </button>
                 </div>
-
-              {/* GRID */}
               <div className="row">
                 {products.map(product => (
                   <div className="col-md-4 col-lg-3 mb-4" key={product.id}>
@@ -260,7 +256,6 @@
                     {/* MOBILE LAYOUT */}
                     <div className="d-flex d-md-block">
 
-                      {/* IMAGE */}
                       <img
                         src={product.image}
                         style={{
@@ -387,8 +382,6 @@
         {/* MOBILE FILTER */}
         {showFilter && (
           <div className="mobile-filter">
-
-            {/* HEADER */}
             <div className="d-flex justify-content-between p-3 border-bottom">
               <h5>Filters</h5>
               <span onClick={() => setShowFilter(false)} style={{ cursor: "pointer" }}>✕</span>
@@ -396,7 +389,6 @@
 
             <div className="d-flex">
 
-              {/* LEFT MENU */}
               <div className="filter-left">
                 {["category", "animal", "price", "rating"].map(item => (
                   <div
@@ -408,8 +400,6 @@
                   </div>
                 ))}
               </div>
-
-              {/* RIGHT */}
               <div className="filter-right p-3">
 
                 {activeFilter === "category" && (

@@ -8,7 +8,6 @@ export default function Profile() {
   const [editing, setEditing] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  //  stable token
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const fetchProfile = async () => {
@@ -20,8 +19,7 @@ export default function Profile() {
       })
 
       setProfile(res.data)
-      setOriginalProfile(res.data) //  backup
-
+      setOriginalProfile(res.data) 
     } catch (err) {
       console.log(err)
     } finally {
@@ -51,7 +49,6 @@ export default function Profile() {
 
     const formData = new FormData()
 
-    //  send only editable fields
     const allowedFields = ["phone", "gender", "city", "state", "pincode", "image"]
 
     allowedFields.forEach(key => {
@@ -75,8 +72,6 @@ export default function Profile() {
       console.log(err)
     }
   }
-
-  //  cancel restore
   const handleCancel = () => {
     setProfile(originalProfile)
     setEditing(false)
@@ -93,8 +88,7 @@ export default function Profile() {
   
         {/* HEADER */}
         <div className="d-flex align-items-center gap-4 flex-wrap">
-  
-          {/* IMAGE */}
+
           <div style={{ position: "relative" }}>
   
             <img
@@ -133,8 +127,6 @@ export default function Profile() {
             )}
   
           </div>
-  
-          {/* USER INFO */}
           <div>
             <h4 className="mb-1 text-dark">User: {profile.username}</h4>
             <p className="text-dark mb-1">Email: {profile.email}</p>
@@ -142,8 +134,6 @@ export default function Profile() {
   
         </div>
         <hr className="my-4" />
-  
-        {/* DETAILS */}
         <h5 className="mb-3 text-dark">Personal Details</h5>
   
         <div className="row">
@@ -204,8 +194,6 @@ export default function Profile() {
           </div>
   
         </div>
-  
-        {/* BUTTONS */}
         <div className="d-flex justify-content-end mt-3">
   
           {!editing ? (

@@ -22,9 +22,6 @@ export default function Foodies() {
 
   const tokenRef = useRef(localStorage.getItem("token"))
 
-  // ======================
-  // FETCH
-  // ======================
   const fetchProducts = async (animal = "dog") => {
     if(cacheRef.current[animal]){
       setProducts(cacheRef.current[animal])
@@ -53,9 +50,6 @@ export default function Foodies() {
     fetchProducts("dog")
   }, [])
 
-  // ======================
-  // SWIPER (FIXED)
-  // ======================
   useEffect(() => {
     if (!products.length) return
 
@@ -76,9 +70,6 @@ export default function Foodies() {
     return () => swiper.destroy(true, true)
   }, [products])
 
-  // ======================
-  // PERFORMANCE MAPS
-  // ======================
   const cartMap = useMemo(() => {
     const map = new Map()
     cartItems.forEach(i => {
@@ -91,9 +82,6 @@ export default function Foodies() {
     return new Set(wishlistItems.map(i => i.product.id))
   }, [wishlistItems])
 
-  // ======================
-  // FILTER (OPTIMIZED)
-  // ======================
   const handleFilter = (animal) => {
     if (animal === activeFilter) return
     setActiveFilter(animal)
@@ -107,9 +95,6 @@ export default function Foodies() {
     fetchProducts(animal)
   }
 
-  // ======================
-  // WISHLIST
-  // ======================
   const handleWishlist = async (e, product) => {
     e.preventDefault()
 
@@ -139,9 +124,6 @@ export default function Foodies() {
     }
   }
 
-  // ======================
-  // CART
-  // ======================
   const handleAddToCart = async (e, product) => {
     e.preventDefault()
 
@@ -193,9 +175,6 @@ export default function Foodies() {
     }
   }
 
-  // ======================
-  // UI
-  // ======================
   return (
     <section id="foodies" className="my-4 overflow-hidden">
       <div className="container pb-3">
@@ -220,7 +199,6 @@ export default function Foodies() {
 
         </div>
 
-        {/* SWIPER */}
         <div className="food-carousel swiper" key={activeFilter}>
           <div className="swiper-wrapper">
           {loading ? (

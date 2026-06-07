@@ -19,7 +19,7 @@ function PendingProducts() {
         setProducts(res.data);
       } catch (err) {
         console.log(err);
-        setProducts([]); // safety
+        setProducts([]); 
       } finally {
         setLoading(false);
       }

@@ -62,7 +62,6 @@ function ReturnsAdmin() {
               <p><span>Payment:</span> {order.is_paid ? "Paid" : "Not Paid"}</p>
             </div>
 
-            {/* ACTIONS */}
             {order.return_status === "Requested" && (
               <div className="return-actions">
 
@@ -83,7 +82,6 @@ function ReturnsAdmin() {
               </div>
             )}
 
-            {/* FINAL */}
             {order.return_status === "Approved" && (
               <div className="status-text success">Refund Processed</div>
             )}

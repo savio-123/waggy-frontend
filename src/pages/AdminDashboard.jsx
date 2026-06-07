@@ -72,7 +72,6 @@ function AdminDashboard() {
 
       <h2 className="title">Dashboard Overview</h2>
 
-      {/* STATS */}
       <div className="cards">
         <div className="card gradient1">
           <p>Total Orders</p>
@@ -98,7 +97,6 @@ function AdminDashboard() {
       {/* CHARTS */}
       <div className="charts">
 
-        {/* LINE */}
         <div className="chart-box">
           <h4>Weekly Sales</h4>
 
@@ -143,8 +141,6 @@ function AdminDashboard() {
         </div>
 
       </div>
-
-      {/* RECENT ORDERS */}
       <div className="orders-table">
         <h4>Recent Orders</h4>
 

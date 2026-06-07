@@ -6,7 +6,7 @@
     color: white;
   }
   
-  /* DARK OVERLAY (IMPORTANT 🔥) */
+  /* DARK OVERLAY  */
   .about-clean::before {
     display: none;
 }

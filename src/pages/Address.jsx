@@ -85,7 +85,6 @@ export default function Address() {
   return (
     <div className="container my-5">
 
-      {/* HEADER */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h3 className="fw-bold text-dark">Your Addresses</h3>
 
@@ -106,7 +105,6 @@ export default function Address() {
         </button>
       </div>
 
-      {/* FORM */}
       {showForm && (
         <form className="card p-4 mb-4 shadow-sm border-0 rounded-3" onSubmit={handleSubmit}>
 
@@ -155,7 +153,6 @@ export default function Address() {
         </form>
       )}
 
-      {/* ADDRESS LIST */}
       <div className="row g-3">
 
         {addresses.map(addr => (
@@ -163,7 +160,6 @@ export default function Address() {
 
             <div className="card p-3 shadow-sm border-0 rounded-3 h-100">
 
-              {/* HEADER */}
               <div className="d-flex justify-content-between align-items-start mb-2">
 
                 <div>
@@ -188,7 +184,6 @@ export default function Address() {
 
               </div>
 
-              {/* ADDRESS */}
               <div className="small text-muted">
                 {addr.house}, {addr.area}
               </div>
@@ -200,8 +195,6 @@ export default function Address() {
               <div className="small text-muted">
                 {addr.city}, {addr.state} - {addr.pincode}
               </div>
-
-              {/* ACTIONS */}
               <div className="d-flex gap-2 mt-3 flex-wrap">
 
                 <button

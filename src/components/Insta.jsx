@@ -8,16 +8,12 @@ export default function Insta() {
   
           {images.map((num, index) => (
             <div className="col instagram-item text-center position-relative" key={index}>
-  
-              {/* ICON OVERLAY */}
               <div className="icon-overlay d-flex justify-content-center position-absolute">
                 <iconify-icon
                   className="text-white"
                   icon="la:instagram"
                 ></iconify-icon>
               </div>
-  
-              {/* IMAGE */}
               <a href="#">
                 <img
                   src={`/images/insta${num}.jpg`}

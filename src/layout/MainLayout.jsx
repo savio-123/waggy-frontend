@@ -8,7 +8,6 @@ export default function MainLayout({isAdmin}) {
 
       <Header2 isAdmin={isAdmin}/>
 
-      {/* MAIN CONTENT */}
       <main className="flex-grow-1">
         <Outlet />
       </main>

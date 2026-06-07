@@ -15,18 +15,12 @@ export default function OffcanvasCart() {
 
   const tokenRef = useRef(localStorage.getItem("token"))
 
-  // =========================
-  // OPEN CART 
-  // =========================
   useEffect(() => {
     if (open) {
       fetchCart()
     }
   }, [open])
 
-  // =========================
-  // FETCH CART
-  // =========================
   const fetchCart = async () => {
     try {
       if (!tokenRef.current) {
@@ -47,9 +41,6 @@ export default function OffcanvasCart() {
     }
   }
 
-  // =========================
-  // REMOVE ITEM
-  // =========================
   const handleRemove = async (productId) => {
     try {
       await API.post(
@@ -70,9 +61,6 @@ export default function OffcanvasCart() {
     }
   }
 
-  // =========================
-  // TOTAL
-  // =========================
   const total = useMemo(() => {
     return cartItems.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
@@ -80,14 +68,10 @@ export default function OffcanvasCart() {
     )
   }, [cartItems])
 
-  // =========================
-  // CLOSE
-  // =========================
   const closeCart = () => setOpen(false)
 
   return (
     <>
-      {/* BACKDROP */}
       {open && (
         <div
           onClick={closeCart}
@@ -103,7 +87,6 @@ export default function OffcanvasCart() {
         />
       )}
 
-      {/* DRAWER */}
       <div
         style={{
           position: "fixed",

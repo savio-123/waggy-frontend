@@ -20,7 +20,6 @@ export default function Toys() {
   const [products, setProducts] = useState([])
   const [activeFilter, setActiveFilter] = useState("dog")
 
-  // ✅ ONLY CHANGE HERE
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const cartMap = useMemo(() => {

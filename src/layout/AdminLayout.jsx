@@ -19,8 +19,6 @@ export default function AdminLayout() {
 
       {/* OVERLAY */}
       {open && <div className="overlay" onClick={() => setOpen(false)} />}
-
-      {/* SIDEBAR */}
       <div className={`sidebar ${open ? "show" : ""}`}>
         <h3 className="logo">Waggy</h3>
 
@@ -37,11 +35,7 @@ export default function AdminLayout() {
           </Link>
         ))}
       </div>
-
-      {/* MAIN */}
       <div className="main">
-
-        {/* TOPBAR */}
         <div className="topbar">
 
           <button className="menu-btn" onClick={() => setOpen(true)}>

@@ -23,7 +23,6 @@ export default function ProductDetail() {
 
   const [loadingId, setLoadingId] = useState(null)
 
-  // stable token
   const tokenRef = useRef(localStorage.getItem("token"))
 
   const fetchData = async () => {
@@ -148,8 +147,6 @@ export default function ProductDetail() {
 
   return (
     <section className="container my-4">
-
-      {/* PRODUCT */}
       <div className="row g-4">
 
         <div className="col-md-5">
@@ -176,7 +173,6 @@ export default function ProductDetail() {
             <p className="text-muted">{product.description}</p>
           </div>
 
-          {/* ACTIONS */}
           <div className="d-flex gap-2 flex-wrap mt-3">
 
             {cartItem ? (
@@ -204,10 +200,7 @@ export default function ProductDetail() {
         </div>
 
       </div>
-
-      {/* RELATED */}
       <RelatedProducts productId={product.id} />
-
       {/* REVIEWS */}
       <div className="mt-5">
 

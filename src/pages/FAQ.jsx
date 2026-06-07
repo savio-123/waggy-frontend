@@ -6,28 +6,22 @@ export default function FAQ() {
   const [search, setSearch] = useState("")
 
   const faqs = [
-    // ORDERS
+    
     { category: "Orders", q: "How do I place an order?", a: "Browse products, add to cart, and proceed to checkout." },
     { category: "Orders", q: "Can I cancel my order?", a: "Yes, you can cancel orders before they are shipped." },
 
-    // PAYMENTS
     { category: "Payments", q: "What payment methods are available?", a: "We support Cash on Delivery and Online Payment (Razorpay)." },
     { category: "Payments", q: "Is online payment secure?", a: "Yes, all transactions are secured using trusted payment gateways." },
 
-    // RETURNS
     { category: "Returns", q: "What is the return policy?", a: "You can request a return within 7 days after delivery." },
     { category: "Returns", q: "How do I request a return?", a: "Go to your orders and click 'Request Return'." },
 
-    // ACCOUNT
     { category: "Account", q: "How do I update my profile?", a: "Go to profile section and edit your details." },
     { category: "Account", q: "Can I change my address?", a: "Yes, you can manage addresses from your account." },
 
-    // GENERAL
     { category: "General", q: "Do you sell all pet categories?", a: "Yes, we offer products for dogs, cats, birds, and more." },
     { category: "General", q: "How do I contact support?", a: "You can use the AI assistant or contact us via email." }
   ]
-
-  // 🔍 FILTER
   const filtered = faqs.filter(f =>
     f.q.toLowerCase().includes(search.toLowerCase())
   )
@@ -35,10 +29,7 @@ export default function FAQ() {
   return (
     <div className="container py-5" style={{ maxWidth: "800px" }}>
 
-      {/* TITLE */}
       <h2 className="mb-4 text-center">Help Center</h2>
-
-      {/* SEARCH */}
       <input
         className="form-control mb-4"
         placeholder="Search questions..."
@@ -46,7 +37,6 @@ export default function FAQ() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      {/* FAQ LIST */}
       {filtered.map((f, i) => (
         <div
           key={i}
@@ -59,7 +49,6 @@ export default function FAQ() {
           }}
         >
 
-          {/* QUESTION */}
           <div
             onClick={() => setActiveIndex(activeIndex === i ? null : i)}
             style={{
@@ -75,7 +64,7 @@ export default function FAQ() {
             <span>{activeIndex === i ? "−" : "+"}</span>
           </div>
 
-          {/* ANSWER */}
+    
           {activeIndex === i && (
             <div style={{
               padding: "15px",
@@ -88,8 +77,6 @@ export default function FAQ() {
 
         </div>
       ))}
-
-      {/* EMPTY */}
       {filtered.length === 0 && (
         <p className="text-center text-muted mt-4">
           No results found 😕

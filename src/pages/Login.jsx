@@ -102,8 +102,6 @@ export default function Login() {
   return (
     <section className="container-fluid vh-100 overflow-hidden">
      <div className="row h-100">
-
-        {/*  LEFT IMAGE */}
         <div className="col-md-6 d-none d-md-block p-0 ">
         <img
           src="/images/login4.png"
@@ -116,7 +114,7 @@ export default function Login() {
         />
         </div>
 
-        {/*  RIGHT FORM */}
+
         <div className="col-md-6 d-flex align-items-center justify-content-center login-bg">
 
 <div className="glass-card">          

@@ -13,10 +13,8 @@ function AddProduct() {
 
   const [categories, setCategories] = useState([])
 
-  // ✅ useRef for image (no re-render)
   const imageRef = useRef(null)
 
-  // ✅ useRef for token (read once)
   const tokenRef = useRef(localStorage.getItem("token"))
 
   useEffect(() => {
@@ -32,7 +30,6 @@ function AddProduct() {
     fetchCategories()
   }, [])
 
-  // input change
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
@@ -72,7 +69,6 @@ function AddProduct() {
 
       toast.success("Product submitted for approval")
 
-      // reset form
       setFormData({
         name: "",
         price: "",

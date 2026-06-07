@@ -17,7 +17,6 @@ export default function Checkout() {
 
   const address_id = location.state?.address_id
 
-  // ✅ useRef
   const tokenRef = useRef(localStorage.getItem("token"))
   const fetchedRef = useRef(false)
 
@@ -138,7 +137,6 @@ export default function Checkout() {
 
         <div className="row">
 
-          {/* LEFT */}
           <div className="col-md-8">
 
             {address && (
@@ -171,7 +169,6 @@ export default function Checkout() {
               </div>
             )}
 
-            {/* ITEMS */}
             <div className="card p-3 shadow-sm border-0">
 
               <h5 className="text-dark">Order Items</h5>
@@ -222,7 +219,6 @@ export default function Checkout() {
 
           </div>
 
-          {/* RIGHT */}
           <div className="col-md-4">
 
             <div className="card p-4 shadow-sm border-0">

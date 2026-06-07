@@ -11,12 +11,10 @@ export default function AIChatWidget() {
   const navigate = useNavigate()
   const chatEndRef = useRef()
 
-  // AUTO SCROLL
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  // GREETING
   useEffect(() => {
     if (open && messages.length === 0) {
       setMessages([

@@ -60,7 +60,6 @@ export default function Cart() {
   const handleDecrement = (id) => updateCart("/cart/remove/", id)
   const handleDelete = (id) => updateCart("/cart/delete/", id)
 
-  // CALCULATIONS
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0
@@ -85,10 +84,9 @@ export default function Cart() {
       <div className="container">
         <div className="row">
 
-          {/* LEFT */}
           <div className="col-md-8">
 
-            {/* ADDRESS */}
+
             <div className="card p-3 mb-3 shadow-sm border-0">
 
               <h6 className="text-dark">Select Delivery Address</h6>
@@ -140,8 +138,6 @@ export default function Cart() {
                 })()}
               </div>
             )}
-
-            {/* ITEMS */}
             {cartItems.map(item => (
               <div key={item.id} className="card mb-3 p-3 shadow-sm border-0">
 
@@ -202,8 +198,6 @@ export default function Cart() {
             ))}
 
           </div>
-
-          {/* RIGHT */}
           <div className="col-md-4">
 
             <div className="card p-4 shadow-sm border-0">

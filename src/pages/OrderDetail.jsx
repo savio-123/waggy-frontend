@@ -56,7 +56,7 @@ export default function OrderDetail() {
                 fetchOrder();
   
               } catch {
-                toast.error("Something went wrong ❌");
+                toast.error("Something went wrong");
               }
   
               toast.dismiss(t.id);
@@ -111,7 +111,6 @@ export default function OrderDetail() {
         {order.status}
       </span>
 
-      {/* STATUS TRACKER */}
       <div className="card p-3 mb-4 shadow-sm border-0 rounded-3 bg-white">
 
         <h6 className="mb-3 text-dark fw-semibold">Order Status</h6>
@@ -143,7 +142,6 @@ export default function OrderDetail() {
         </div>
       </div>
 
-      {/* ADDRESS */}
       <div className="card p-3 mb-4 shadow-sm border-0 rounded-3 bg-white">
 
         <h6 className="mb-2 text-dark fw-semibold">
@@ -167,8 +165,6 @@ export default function OrderDetail() {
         </div>
 
       </div>
-
-      {/* ITEMS */}
       <div className="card p-3 shadow-sm border-0 rounded-3 bg-white">
 
         <h6 className="mb-3 text-dark fw-semibold">Items</h6>
@@ -231,8 +227,6 @@ export default function OrderDetail() {
           <strong>Payment Status:</strong>{" "}
           {order.is_paid ? "Paid ✅" : "Not Paid ❌"}
         </div>
-
-        {/* RETRY PAYMENT */}
         {order.payment_method === "ONLINE" && !order.is_paid && (
           <button
             className="btn btn-warning w-100 mb-2"
@@ -281,7 +275,6 @@ export default function OrderDetail() {
           </button>
         )}
 
-        {/* CANCEL */}
         {!order.is_paid && order.status === "Pending" && (
           <button
             className="btn btn-danger w-100"

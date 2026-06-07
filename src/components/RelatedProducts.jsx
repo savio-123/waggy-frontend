@@ -32,15 +32,12 @@ export default function RelatedProducts({ productId }) {
       {/* HEADER */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h4 className="fw-bold m-0">Related Products</h4>
-
-        {/* DESKTOP SCROLL BUTTONS */}
         <div className="d-none d-md-flex gap-2">
           <button className="btn btn-light border" onClick={() => scroll("left")}>‹</button>
           <button className="btn btn-light border" onClick={() => scroll("right")}>›</button>
         </div>
       </div>
 
-      {/* SCROLL CONTAINER */}
       <div
         ref={scrollRef}
         className="d-flex gap-3 overflow-auto pb-2"
@@ -92,7 +89,6 @@ export default function RelatedProducts({ productId }) {
                 {p.name}
                 </h6>
 
-                {/*  DESCRIPTION */}
                 <p
                 className="text-muted mb-1"
                 style={{

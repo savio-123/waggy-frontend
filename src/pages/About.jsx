@@ -9,8 +9,6 @@ export default function About() {
         <h1>Waggy 🐾</h1>
         <p>Simple. Trusted. Made for your pets.</p>
       </section>
-
-      {/* ABOUT */}
       <section className="about-content container">
         <div className="about-text">
 

@@ -15,7 +15,6 @@ export default function AdminProducts() {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
-  // FETCH PRODUCTS
   const fetchProducts = async () => {
     try {
       const res = await API.get("/admin/products/", {
@@ -35,29 +34,24 @@ export default function AdminProducts() {
     }
   }
 
-  // FETCH CATEGORIES
   const fetchCategories = async () => {
     const res = await API.get("/categories/")
     setCategories(res.data)
   }
 
-  // INITIAL LOAD
   useEffect(() => {
     fetchProducts()
     fetchCategories()
   }, [])
 
-  // 🔥 FETCH ON FILTER + PAGE CHANGE
   useEffect(() => {
     fetchProducts()
   }, [page, search, filterStatus, filterCategory])
 
-  // 🔥 RESET PAGE WHEN FILTER CHANGES
   useEffect(() => {
     setPage(1)
   }, [search, filterStatus, filterCategory])
 
-  // DELETE
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this product?")) return
 
@@ -70,7 +64,6 @@ export default function AdminProducts() {
     }
   }
 
-  // UPDATE
   const handleUpdate = async (product, updates) => {
     try {
       await API.put(`/products/${product.id}/`, updates)
@@ -90,7 +83,6 @@ export default function AdminProducts() {
 
       <h2 className="admin-title">📦 Product Management</h2>
 
-      {/* FILTERS */}
       <div className="admin-filters">
 
         <input
@@ -123,7 +115,6 @@ export default function AdminProducts() {
 
       </div>
 
-      {/* EMPTY STATE */}
       {products.length === 0 ? (
         <div className="text-center mt-5">
           <h5 className="text-muted">No products found 😕</h5>
@@ -182,7 +173,6 @@ export default function AdminProducts() {
             ))}
           </div>
 
-          {/* PAGINATION */}
           <div className="d-flex justify-content-center mt-4 gap-2">
 
             <button

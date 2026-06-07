@@ -17,8 +17,8 @@ export default function BestSelling() {
 
   const [products, setProducts] = useState([])
   const tokenRef = useRef(localStorage.getItem("token"))
+  const [loadingId, setLoadingId] = useState(null)
 
-  //  FETCH BEST SELLING
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -32,7 +32,6 @@ export default function BestSelling() {
     fetchProducts()
   }, [])
 
-  //  SWIPER
   useEffect(() => {
     if (products.length > 0) {
       const swiper = new Swiper(".bestselling-swiper", {
@@ -50,10 +49,6 @@ export default function BestSelling() {
       return () => swiper.destroy(true, true)
     }
   }, [products])
-
-  // =========================
-  //  CART HANDLERS
-  // =========================
 
   const handleAddToCart = async (e, product) => {
     e.preventDefault()
@@ -75,8 +70,6 @@ export default function BestSelling() {
     }
   }
 
-  
-
   const handleIncrement = async (e, product) => {
     e.preventDefault()
 
@@ -89,14 +82,12 @@ export default function BestSelling() {
     })
   }
 
-  const [loadingId, setLoadingId] = useState(null)
-
   const handleWishlist = async (e, product) => {
     e.preventDefault()
 
     if (!tokenRef.current) return toast.error("Login required")
 
-    if (loadingId === product.id) return // prevent spam clicks
+    if (loadingId === product.id) return 
 
     setLoadingId(product.id)
 
@@ -159,7 +150,6 @@ export default function BestSelling() {
     <section className="my-4 overflow-hidden">
       <div className="container pb-3">
 
-        {/* HEADER */}
         <div className="section-header d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start mb-3">
 
           <h2 style={{ fontSize: "clamp(22px,5vw,48px)" }}>
@@ -172,7 +162,6 @@ export default function BestSelling() {
 
         </div>
 
-        {/* SWIPER */}
         <div className="bestselling-swiper swiper">
           <div className="swiper-wrapper">
 
@@ -217,7 +206,6 @@ export default function BestSelling() {
 
                         <h6 className="text-primary">₹{Number(product.price).toFixed(2)}</h6>
 
-                        {/*  CART UI */}
                         <div className="d-flex justify-content-between align-items-center mt-2">
 
                           {cartItem ? (

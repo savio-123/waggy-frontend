@@ -1,5 +1,5 @@
 import { useState } from "react"
-import API from "../api"   // ✅ add this
+import API from "../api" 
 
 export default function OffcanvasSearch() {
 
@@ -9,7 +9,7 @@ export default function OffcanvasSearch() {
     e.preventDefault()
 
     try {
-      const res = await API.get(`/products/?search=${query}`)   // ✅ FIX
+      const res = await API.get(`/products/?search=${query}`)   
       console.log(res.data)
     } catch (err) {
       console.log(err)

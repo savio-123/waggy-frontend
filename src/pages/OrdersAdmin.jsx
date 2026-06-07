@@ -30,28 +30,10 @@ function OrdersAdmin() {
   useEffect(() => {
     fetchOrders();
   }, []);
-
-  // ✅ STATUS UPDATE (OPEN MODAL)
-  const confirmOrder = (id, status, is_paid) => {
-
-    // 🚫 BLOCK if already completed
-    if (status === "Delivered" && is_paid) {
-      return; // do nothing
-    }
-  
-    setConfirmBox({
-      show: true,
-      id,
-      status,
-      is_paid
-    });
-  };
-
  
   const handleConfirm = async () => {
     try {
-  
-      // PAYMENT UPDATE
+
       if (confirmBox.paymentAction) {
   
         await API.put(
@@ -61,8 +43,6 @@ function OrdersAdmin() {
         );
   
       }
-  
-      // STATUS UPDATE
       else {
   
         await API.put(
@@ -83,22 +63,6 @@ function OrdersAdmin() {
   
       fetchOrders();
   
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  //  PAYMENT TOGGLE
-  const togglePayment = async (id, is_paid) => {
-    try {
-      await API.put(
-        `/orders/${id}/payment/`,
-        { is_paid },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      fetchOrders();
     } catch (err) {
       console.log(err);
     }
@@ -166,8 +130,6 @@ function OrdersAdmin() {
         </select>
 
       </div>
-
-      {/* LIST */}
       <div className="row g-4">
         {filteredOrders.map(order => (
           <div key={order.id} className="col-lg-6">
@@ -183,8 +145,6 @@ function OrdersAdmin() {
                   {order.status}
                 </span>
               </div>
-
-              {/* USER */}
               <div className="mb-2">
                 <small className="text-muted">
                   Customer: <span className="fw-semibold">
@@ -194,12 +154,9 @@ function OrdersAdmin() {
                 <p className="text-muted small">User ID: {order.user}</p>
               </div>
 
-              {/* PRICE */}
               <h6 className="text-primary fw-bold mb-3">
                 ₹{order.total_price}
               </h6>
-
-              {/* ITEMS */}
               <div className="border-top pt-3">
                 {order.items.map((item, index) => (
                   <div key={index} className="d-flex align-items-center gap-3 mb-3">
@@ -236,8 +193,6 @@ function OrdersAdmin() {
                   </div>
                 ))}
               </div>
-
-              {/* STATUS SELECT */}
               <div className="mt-3">
                 <select
                   className="form-select"
@@ -258,7 +213,6 @@ function OrdersAdmin() {
                 </select>
               </div>
 
-              {/* PAYMENT */}
               {order.payment_method === "ONLINE" ? (
 
               <div className="mt-2">
@@ -307,8 +261,6 @@ function OrdersAdmin() {
               </div>
 
               )}
-
-              {/* ACTIONS */}
               <div
                 className='d-flex flex-column gap-2 mt-3 align-items-center' 
               >
@@ -328,8 +280,6 @@ function OrdersAdmin() {
           </div>
         ))}
       </div>
-
-      {/* 🔥 MODAL */}
       {confirmBox.show && (
         <div className="confirm-overlay">
 

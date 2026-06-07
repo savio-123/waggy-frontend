@@ -3,17 +3,16 @@ import Swiper from "swiper"
 import { Pagination, Autoplay } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/pagination"
-import API from "../api"   // ✅ ADD
+import API from "../api" 
 
 export default function Testimonial() {
 
   const [testimonials, setTestimonials] = useState([])
   const swiperRef = useRef(null)
 
-  // FETCH TESTIMONIALS
   const fetchTestimonials = async () => {
     try {
-      const res = await API.get("/testimonials/")   // ✅ FIX
+      const res = await API.get("/testimonials/")  
       const data = res.data
 
       if (Array.isArray(data)) {

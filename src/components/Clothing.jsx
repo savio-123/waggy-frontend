@@ -22,7 +22,6 @@ export default function Clothing() {
 
   const tokenRef = useRef(localStorage.getItem("token"))
 
-  //  optimized wishlist lookup
   const wishlistSet = useMemo(() => 
     new Set(wishlistItems.map(i => i.product.id)),
   [wishlistItems])
@@ -35,9 +34,6 @@ export default function Clothing() {
     return map
   }, [cartItems])
 
-  // ======================
-  // FETCH PRODUCTS
-  // ======================
   const fetchProducts = async (animal = "dog") => {
 
     if (cacheRef.current[animal]){
@@ -71,9 +67,6 @@ export default function Clothing() {
     fetchProducts("dog")
   }, [])
 
-  // ======================
-  // SWIPER
-  // ======================
   useEffect(() => {
     if (!products.length) return
   
@@ -90,11 +83,8 @@ export default function Clothing() {
     })
   
     return () => swiper.destroy(true, true)
-  }, [products])   //  FIXED
+  }, [products])   
 
-  // ======================
-  // FILTER
-  // ======================
   const handleFilter = (animal) => {
     if (animal === activeFilter) return
     setActiveFilter(animal)
@@ -108,9 +98,6 @@ export default function Clothing() {
     fetchProducts(animal)
   }
 
-  // ======================
-  // WISHLIST
-  // ======================
   const handleWishlist = async (e, product) => {
     e.preventDefault()
 
@@ -143,9 +130,6 @@ export default function Clothing() {
     }
   }
 
-  // ======================
-  // CART
-  // ======================
   const handleAddToCart = async (e, product) => {
     e.preventDefault()
 
@@ -202,9 +186,6 @@ export default function Clothing() {
     )
   }
 
-  // ======================
-  // UI
-  // ======================
   return (
     <section id="clothing" className="my-4 overflow-hidden">
       <div className="container pb-3">
@@ -228,7 +209,6 @@ export default function Clothing() {
 
         </div>
 
-        {/* SWIPER */}
         <div className="clothing-carousel swiper" key={activeFilter}>
           <div className="swiper-wrapper">
           {loading ? (

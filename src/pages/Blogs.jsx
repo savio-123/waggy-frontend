@@ -7,8 +7,6 @@ export default function Blogs() {
 
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(true)
-
-  // ✅ prevent multiple calls
   const fetchedRef = useRef(false)
   const navigate = useNavigate()
 
@@ -60,8 +58,6 @@ export default function Blogs() {
       <div className="row">
 
         {blogs.map(blog => {
-
-          // ✅ compute once per render
           const date = new Date(blog.created_at)
           const day = date.getDate()
           const month = date.toLocaleString("default", { month: "short" })
@@ -72,7 +68,6 @@ export default function Blogs() {
 
               <div className="card position-relative">
 
-                {/* DATE */}
                 <div className="position-absolute bg-light p-2 m-2 rounded text-dark">
                   <b>{day}</b> {month} {year}
                 </div>
